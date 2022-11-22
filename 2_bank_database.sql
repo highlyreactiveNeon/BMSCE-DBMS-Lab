@@ -80,3 +80,29 @@ insert into loan values
   (3, "SBI_ShivajiRoad", 3000),
   (4, "SBI_ParlimentRoad", 4000),
   (5, "SBI_Jantarmantar", 5000);
+  
+-- todo 3
+select branch_name, assets/100000 as assets_in_lakh from branch;
+
+-- todo 4
+create view todo3 as
+select d.acc_num, branch_name, customer_name
+from bank_account b, depositer d
+where d.acc_num = b.acc_num;
+
+select * from todo3;
+
+select distinct customer_name
+from todo3 outerT
+where 1 < (
+	select count(*)
+    from todo3
+    where branch_name = outerT.branch_name and customer_name = outerT.customer_name
+);
+
+-- todo 5
+create view branch_loans as 
+select branch_name, amount
+from loan;
+
+select * from branch_loans;
