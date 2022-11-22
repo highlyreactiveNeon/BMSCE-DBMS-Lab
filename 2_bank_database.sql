@@ -106,3 +106,15 @@ select branch_name, amount
 from loan;
 
 select * from branch_loans;
+
+-- todo OnSpot
+update bank_account
+set balance = balance + 1000
+where acc_num in (select acc_num
+		from depositer d
+        where d.customer_name in (select customer_name
+				from bank_customer where city = "Bangalore"
+            )
+    );
+    
+select * from bank_account;
