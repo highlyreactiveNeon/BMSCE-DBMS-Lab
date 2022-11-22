@@ -1,3 +1,6 @@
+create database if not exists 21cs116_bank_database;
+use 21cs116_bank_database;
+
 -- todo 1
 create table branch(
 	branch_name varchar(255) primary key,
@@ -7,7 +10,7 @@ create table branch(
 
 create table bank_account(
 	acc_num int primary key,
-	branch_name varchar(255) not null,
+	branch_name varchar(255),
 	balance float,
 	foreign key (branch_name) references branch(branch_name)
 );
@@ -21,8 +24,8 @@ create table bank_customer(
 
 create table depositer(
 	customer_name varchar(255),
-	acc_num varchar(255),
-	primary key (customer_name, acc_no),
+	acc_num int,
+	primary key (customer_name, acc_num),
 	foreign key (acc_num) references bank_account (acc_num),
 	foreign key (customer_name) references bank_customer (customer_name)
 );
@@ -36,7 +39,7 @@ create table loan(
 
 -- todo 2
 insert into branch values
-  ("SBI_Chamrajper", "Bangalore", 50000),
+  ("SBI_Chamrajpet", "Bangalore", 50000),
   ("SBI_ResidencyRoad", "Bangalore", 10000),
   ("SBI_ShivajiRoad", "Bombay", 20000),
   ("SBI_ParlimentRoad", "Delhi", 10000),
