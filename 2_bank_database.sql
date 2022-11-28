@@ -118,3 +118,43 @@ where acc_num in (select acc_num
     );
     
 select * from bank_account;
+
+-- More Queries!!!
+-- lesgoo!!!
+create table borrower(
+	customer_name varchar(255),
+	loan_num int,
+	foreign key (customer_name) references bank_customer (customer_name),
+	foreign key (loan_num) references loan (loan_num)
+);
+
+-- inserting values for more queries
+insert into branch values
+	("SBI_MantriMarg", "Delhi", 200000);
+	
+insert into bank_account values
+	(12, "SBI_MantriMarg", 2000);
+	
+insert into depositor values
+	("Nikil", 12);
+	
+insert into borrower values
+	("Avinash", 1),
+	("Dinesh", 2),
+	("Mohan", 3),
+	("Nikil", 4),
+	("Ravi", 5);
+	
+-- todo 1
+-- using sub-query
+select distinct(customer_name) from depositer
+where acc_num in (select acc_num from bank_account
+	where branch_name in (select branch_name from branch
+		where branch_city = "Delhi"));
+
+-- todo 2
+-- using sub-query
+select customer_name from borrower
+where customer_name in (select distinct(customer_name) from depositer);
+
+-- todo 3
