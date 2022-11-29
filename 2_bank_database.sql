@@ -147,12 +147,12 @@ insert into borrower values
 	
 -- todo 1
 -- using sub-query
-
--- this query is dabba, don't copy it
-select distinct(customer_name) from depositer
-where acc_num in (select acc_num from bank_account
+select customer_name from bank_account ba, depositer d
 	where branch_name in (select branch_name from branch
-		where branch_city = "Delhi"));
+		where branch_city = "Delhi") and ba.acc_num = d.acc_num
+	group by customer_name
+    having count(distinct branch_name) = (select count(branch_name) from branch
+		where branch_city = "Delhi");
 
 -- todo 2
 -- using sub-query
