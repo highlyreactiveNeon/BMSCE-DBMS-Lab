@@ -157,6 +157,6 @@ select customer_name from bank_account ba, depositer d
 -- todo 2
 -- using sub-query
 select customer_name from borrower
-where customer_name in (select distinct(customer_name) from depositer);
+where customer_name not in (select distinct(customer_name) from depositer);
 
 -- todo 3
