@@ -166,6 +166,23 @@ select customer_name from borrower
 where customer_name not in (select distinct(customer_name) from depositer);
 
 -- todo 3
+select customer_name from borrower
+where customer_name in (select distinct(customer_name) from depositer);
+
+-- todo 4
 select * from branch
 where assets > (select max(assets) from branch
 where branch_city = "Bangalore");
+
+-- todo 5
+delete from bank_account
+where branch_name in (select branch_name from branch
+	where branch_city = "Bombay");
+    
+select * from bank_account;
+    
+-- todo 6
+update bank_account
+set balance = balance + balance*0.05;
+
+select * from bank_account;
