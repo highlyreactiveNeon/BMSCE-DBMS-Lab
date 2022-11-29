@@ -146,7 +146,7 @@ insert into borrower values
 	("Ravi", 5);
 	
 -- todo 1
--- using sub-query
+-- using combination of sub-query and joining
 select customer_name from bank_account ba, depositer d
 	where branch_name in (select branch_name from branch
 		where branch_city = "Delhi") and ba.acc_num = d.acc_num
