@@ -147,6 +147,8 @@ insert into borrower values
 	
 -- todo 1
 -- using sub-query
+
+-- this query is dabba, don't copy it
 select distinct(customer_name) from depositer
 where acc_num in (select acc_num from bank_account
 	where branch_name in (select branch_name from branch
