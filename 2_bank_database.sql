@@ -160,3 +160,6 @@ select customer_name from borrower
 where customer_name not in (select distinct(customer_name) from depositer);
 
 -- todo 3
+select * from branch
+where assets > (select max(assets) from branch
+where branch_city = "Bangalore");
