@@ -189,3 +189,29 @@ update bank_account
 set balance = balance + balance*0.05;
 
 select * from bank_account;
+
+-- todo OnSpot
+
+-- shit code incoming
+delete from depositer
+where acc_num in (select acc_num from bank_account
+where branch_name in (select branch_name from branch
+where branch_city = "Bangalore"));
+
+delete from borrower
+where customer_name in (select customer_name from loan
+where branch_name in (select branch_name from branch
+where branch_city = "Bangalore"));
+
+delete from loan
+where branch_name in (select branch_name from branch
+where branch_city = "Bangalore");
+
+delete from bank_account
+where branch_name in (select branch_name from branch
+where branch_city = "Bangalore");
+
+delete from branch
+where branch_city = "Bangalore";
+
+select * from branch;
