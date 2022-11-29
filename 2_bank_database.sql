@@ -167,7 +167,10 @@ where customer_name not in (select distinct(customer_name) from depositer);
 
 -- todo 3
 select customer_name from borrower
-where customer_name in (select distinct(customer_name) from depositer);
+where customer_name in (select customer_name from depositer
+	where acc_num in (select acc_num from bank_account
+		where branch_name in (select branch_name from branch
+			where branch_city = "Bangalore")));
 
 -- todo 4
 select * from branch
