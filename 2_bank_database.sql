@@ -135,7 +135,7 @@ insert into branch values
 insert into bank_account values
 	(12, "SBI_MantriMarg", 2000);
 	
-insert into depositor values
+insert into depositer values
 	("Nikil", 12);
 	
 insert into borrower values
