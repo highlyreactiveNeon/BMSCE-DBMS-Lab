@@ -77,7 +77,19 @@ from aircraft a, certified c, employees e
 where a.aid = c.aid and c.eid = e.eid
 	and e.salary > 80000;
     
-
+-- actual query
+select aname
+from aircraft
+where aid not in (
+	select aid
+	from (
+		select a.aid, min(e.salary) as salary
+		from aircraft a, certified c, employees e
+		where a.aid = c.aid and c.eid = e.eid
+		group by a.aid
+	) innerT
+	where salary <= 80000
+);
     
 -- todo 2
 select c.eid, max(a.cruising_range) 
